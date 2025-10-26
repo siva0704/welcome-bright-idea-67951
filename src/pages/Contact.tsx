@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MagneticButton from "@/components/MagneticButton";
 import AnimatedSection from "@/components/AnimatedSection";
+import StaggerGrid from "@/components/StaggerGrid";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -39,8 +40,10 @@ const Contact = () => {
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary to-accent text-primary-foreground py-20">
         <div className="container mx-auto px-4">
-          <AnimatedSection animation="fade-up">
+          <AnimatedSection animation="reveal-left" speed="slow">
             <h1 className="text-4xl md:text-5xl font-heading font-bold mb-6">Contact Us</h1>
+          </AnimatedSection>
+          <AnimatedSection animation="blur-fade" delay={1}>
             <p className="text-lg max-w-3xl text-primary-foreground/90">
               Get in touch with our team for inquiries, quotes, or support
             </p>
@@ -53,10 +56,10 @@ const Contact = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Form */}
             <div>
-              <AnimatedSection animation="fade-left">
+              <AnimatedSection animation="slide-rotate-left">
                 <h2 className="text-3xl font-heading font-bold mb-6 text-foreground">Send Us a Message</h2>
               </AnimatedSection>
-              <AnimatedSection animation="fade-left" delay={1}>
+              <AnimatedSection animation="perspective-left" delay={1}>
                 <Card>
                 <CardContent className="pt-6">
                   <form onSubmit={handleSubmit} className="space-y-4">
@@ -115,11 +118,11 @@ const Contact = () => {
               </AnimatedSection>
 
               {/* WhatsApp Button */}
-              <AnimatedSection animation="fade-left" delay={2}>
+              <AnimatedSection animation="elastic-bounce" delay={2}>
                 <div className="mt-6">
                   <MagneticButton 
                     variant="secondary" 
-                    className="w-full"
+                    className="w-full animate-pulse-glow"
                     onClick={handleWhatsApp}
                   >
                     <MessageCircle className="mr-2" size={18} />
@@ -131,13 +134,16 @@ const Contact = () => {
 
             {/* Contact Information */}
             <div>
-              <AnimatedSection animation="fade-right">
+              <AnimatedSection animation="slide-rotate-right">
                 <h2 className="text-3xl font-heading font-bold mb-6 text-foreground">Get in Touch</h2>
               </AnimatedSection>
               
-              <div className="space-y-6 mb-8">
-                <AnimatedSection animation="fade-right" delay={1}>
-                  <Card className="profile-card-hover">
+              <StaggerGrid 
+                pattern="wave" 
+                animation="perspective-left" 
+                className="space-y-6 mb-8"
+              >
+                <Card className="profile-card-hover">
                   <CardContent className="pt-6">
                     <div className="card-content-inner">
                       <div className="flex items-start space-x-4">
@@ -154,10 +160,8 @@ const Contact = () => {
                     </div>
                   </CardContent>
                 </Card>
-                </AnimatedSection>
 
-                <AnimatedSection animation="fade-right" delay={2}>
-                  <Card className="profile-card-hover">
+                <Card className="profile-card-hover">
                   <CardContent className="pt-6">
                     <div className="card-content-inner">
                       <div className="flex items-start space-x-4">
@@ -170,10 +174,8 @@ const Contact = () => {
                     </div>
                   </CardContent>
                 </Card>
-                </AnimatedSection>
 
-                <AnimatedSection animation="fade-right" delay={3}>
-                  <Card className="profile-card-hover">
+                <Card className="profile-card-hover">
                   <CardContent className="pt-6">
                     <div className="card-content-inner">
                       <div className="flex items-start space-x-4">
@@ -188,10 +190,8 @@ const Contact = () => {
                     </div>
                   </CardContent>
                 </Card>
-                </AnimatedSection>
 
-                <AnimatedSection animation="fade-right" delay={4}>
-                  <Card className="profile-card-hover">
+                <Card className="profile-card-hover">
                   <CardContent className="pt-6">
                     <div className="card-content-inner">
                       <div className="flex items-start space-x-4">
@@ -207,11 +207,10 @@ const Contact = () => {
                     </div>
                   </CardContent>
                 </Card>
-                </AnimatedSection>
-              </div>
+              </StaggerGrid>
 
               {/* Map */}
-              <AnimatedSection animation="fade-right" delay={5}>
+              <AnimatedSection animation="blur-fade" delay={5}>
                 <div className="rounded-lg overflow-hidden shadow-lg h-64">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3846.4!2d75.1!3d15.35!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTXCsDIxJzAwLjAiTiA3NcKwMDYnMDAuMCJF!5e0!3m2!1sen!2sin!4v1234567890"

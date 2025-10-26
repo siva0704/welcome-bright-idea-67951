@@ -3,11 +3,15 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
 import AnimatedSection from "@/components/AnimatedSection";
+import StaggerGrid from "@/components/StaggerGrid";
+import MagneticText from "@/components/MagneticText";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useScrollProgress } from "@/hooks/use-scroll-progress";
 
 const Products = () => {
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [gridColumns, setGridColumns] = useState(3);
+  const scrollProgress = useScrollProgress();
 
   const products = [
     {
@@ -145,13 +149,22 @@ const Products = () => {
 
   return (
     <div className="min-h-screen flex flex-col overflow-x-hidden max-w-full">
+      {/* Scroll Progress Bar */}
+      <div 
+        className="scroll-progress" 
+        style={{ transform: `scaleX(${scrollProgress / 100})` }}
+      />
       <Header />
       
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary to-accent text-primary-foreground py-20">
         <div className="container mx-auto px-4">
-          <AnimatedSection animation="fade-up">
-            <h1 className="text-4xl md:text-5xl font-heading font-bold mb-6">Our Products</h1>
+          <AnimatedSection animation="reveal-left" speed="slow">
+            <MagneticText className="text-4xl md:text-5xl font-heading font-bold mb-6" animation="slide-up">
+              Our Products
+            </MagneticText>
+          </AnimatedSection>
+          <AnimatedSection animation="blur-fade" delay={1}>
             <p className="text-lg max-w-3xl text-primary-foreground/90">
               Comprehensive range of industrial fasteners and precision components
             </p>
@@ -163,20 +176,24 @@ const Products = () => {
       <section className="py-8 bg-card border-b border-border">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-            <h2 className="text-xl font-heading font-bold text-foreground">Browse by Category</h2>
-            <Select value={categoryFilter} onValueChange={setCategoryFilter}>
-              <SelectTrigger className="w-full md:w-64">
-                <SelectValue placeholder="Filter by category" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Categories</SelectItem>
-                <SelectItem value="bolts">Bolts & Studs</SelectItem>
-                <SelectItem value="nuts">Nuts & Fasteners</SelectItem>
-                <SelectItem value="rods">Threaded Rods</SelectItem>
-                <SelectItem value="forged">Forged Components</SelectItem>
-                <SelectItem value="machined">Machined Components</SelectItem>
-              </SelectContent>
-            </Select>
+            <AnimatedSection animation="fade-right">
+              <h2 className="text-xl font-heading font-bold text-foreground">Browse by Category</h2>
+            </AnimatedSection>
+            <AnimatedSection animation="slide-rotate-left" delay={1}>
+              <Select value={categoryFilter} onValueChange={setCategoryFilter}>
+                <SelectTrigger className="w-full md:w-64">
+                  <SelectValue placeholder="Filter by category" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Categories</SelectItem>
+                  <SelectItem value="bolts">Bolts & Studs</SelectItem>
+                  <SelectItem value="nuts">Nuts & Fasteners</SelectItem>
+                  <SelectItem value="rods">Threaded Rods</SelectItem>
+                  <SelectItem value="forged">Forged Components</SelectItem>
+                  <SelectItem value="machined">Machined Components</SelectItem>
+                </SelectContent>
+              </Select>
+            </AnimatedSection>
           </div>
         </div>
       </section>
@@ -184,13 +201,16 @@ const Products = () => {
       {/* Products Grid */}
       <section className="py-16 bg-muted/30 overflow-x-hidden">
         <div className="container mx-auto px-4 max-w-full">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <StaggerGrid 
+            pattern="wave" 
+            animation="perspective-left" 
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            staggerDelay={0}
+          >
             {filteredProducts.map((product, index) => (
-              <AnimatedSection key={index} animation="scale-in" delay={(index % 3) + 1}>
-                <ProductCard product={product} index={index} />
-              </AnimatedSection>
+              <ProductCard key={index} product={product} index={index} />
             ))}
-          </div>
+          </StaggerGrid>
         </div>
       </section>
 

@@ -310,13 +310,85 @@ All colors MUST be HSL.
     transform: scale(1);
   }
 
-  /* Stagger delays */
-  .stagger-1 { transition-delay: 0.1s; }
-  .stagger-2 { transition-delay: 0.2s; }
-  .stagger-3 { transition-delay: 0.3s; }
-  .stagger-4 { transition-delay: 0.4s; }
-  .stagger-5 { transition-delay: 0.5s; }
-  .stagger-6 { transition-delay: 0.6s; }
+  /* Stagger delays - Extended for complex grids */
+  .stagger-1 { transition-delay: 0.05s; }
+  .stagger-2 { transition-delay: 0.1s; }
+  .stagger-3 { transition-delay: 0.15s; }
+  .stagger-4 { transition-delay: 0.2s; }
+  .stagger-5 { transition-delay: 0.25s; }
+  .stagger-6 { transition-delay: 0.3s; }
+  .stagger-7 { transition-delay: 0.35s; }
+  .stagger-8 { transition-delay: 0.4s; }
+  .stagger-9 { transition-delay: 0.45s; }
+  .stagger-10 { transition-delay: 0.5s; }
+  
+  /* Advanced scroll animations */
+  .scroll-parallax {
+    will-change: transform;
+    transition: transform 0.1s linear;
+  }
+  
+  .scroll-blur-fade {
+    filter: blur(10px);
+    opacity: 0;
+    transition: filter 0.8s ease-out, opacity 0.8s ease-out;
+  }
+  
+  .scroll-blur-fade.visible {
+    filter: blur(0px);
+    opacity: 1;
+  }
+  
+  .scroll-perspective {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+  
+  /* Easing variations */
+  .ease-smooth {
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .ease-bounce {
+    transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  
+  .ease-elastic {
+    transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  
+  /* Shimmer text effect */
+  .text-shimmer {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--foreground)) 0%,
+      hsl(var(--primary)) 50%,
+      hsl(var(--foreground)) 100%
+    );
+    background-size: 200% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3s linear infinite;
+  }
+  
+  /* Magnetic effect enhancement */
+  .magnetic-hover {
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Scroll progress bar */
+  .scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)));
+    transform-origin: left;
+    z-index: 9999;
+    transition: transform 0.1s linear;
+  }
 
   /* Back to Top Button */
   .back-to-top {

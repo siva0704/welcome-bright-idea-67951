@@ -4,10 +4,24 @@ import { cn } from "@/lib/utils";
 
 interface AnimatedSectionProps {
   children: ReactNode;
-  animation?: "fade-up" | "fade-left" | "fade-right" | "scale-in";
+  animation?: 
+    | "fade-up" 
+    | "fade-left" 
+    | "fade-right" 
+    | "scale-in"
+    | "blur-fade"
+    | "slide-rotate-left"
+    | "slide-rotate-right"
+    | "reveal-left"
+    | "reveal-right"
+    | "elastic-bounce"
+    | "perspective-left"
+    | "perspective-right";
   delay?: number;
   className?: string;
   threshold?: number;
+  speed?: "fast" | "normal" | "slow";
+  distance?: "small" | "medium" | "large";
 }
 
 const AnimatedSection = ({ 
@@ -15,7 +29,9 @@ const AnimatedSection = ({
   animation = "fade-up", 
   delay = 0,
   className = "",
-  threshold = 0.1 
+  threshold = 0.1,
+  speed = "normal",
+  distance = "medium"
 }: AnimatedSectionProps) => {
   const { elementRef, isVisible } = useScrollAnimation({ threshold });
 
@@ -27,8 +43,21 @@ const AnimatedSection = ({
       4: "stagger-4",
       5: "stagger-5",
       6: "stagger-6",
+      7: "stagger-7",
+      8: "stagger-8",
+      9: "stagger-9",
+      10: "stagger-10",
     };
     return delayMap[delay] || "";
+  };
+
+  const getSpeedClass = (speed: string) => {
+    const speedMap: { [key: string]: string } = {
+      fast: "duration-300",
+      normal: "duration-600",
+      slow: "duration-1000",
+    };
+    return speedMap[speed] || "duration-600";
   };
 
   return (
@@ -38,6 +67,7 @@ const AnimatedSection = ({
         "animate-on-scroll",
         animation,
         getDelayClass(delay),
+        getSpeedClass(speed),
         isVisible && "visible",
         className
       )}
