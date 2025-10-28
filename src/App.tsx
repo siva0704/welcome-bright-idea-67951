@@ -52,7 +52,7 @@ const App = () => {
         {showLoading && !hasLoaded && (
           <LoadingScreen onComplete={handleLoadingComplete} />
         )}
-        <BrowserRouter>
+        <BrowserRouter basename="/welcome-bright-idea-67951">
           <ScrollToTop />
           <BackToTop />
           <Routes>
