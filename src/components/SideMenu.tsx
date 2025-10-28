@@ -31,7 +31,7 @@ const SideMenu = ({ isOpen, onClose }: SideMenuProps) => {
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
         style={{
-          background: "linear-gradient(to left, hsla(var(--primary) / 0.95), hsla(var(--accent) / 0.90), hsl(0 0% 10% / 0.95))",
+          background: "linear-gradient(to left, hsla(var(--primary) / 0.75), hsla(var(--accent) / 0.70), hsl(0 0% 10% / 0.75))",
         }}
       >
         {/* Close Button */}
