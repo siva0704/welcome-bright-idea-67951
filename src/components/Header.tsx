@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu } from "lucide-react";
 import CircularMenu from "./CircularMenu";
+import SideMenu from "./SideMenu";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -93,34 +94,21 @@ const Header = () => {
           </button>
         </div>
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <nav className="lg:hidden py-4 border-t border-border animate-fade-in">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                onClick={() => setIsMenuOpen(false)}
-                className={`block py-3 px-4 text-sm font-medium transition-colors ${
-                  isActive(link.path)
-                    ? "text-primary bg-muted"
-                    : "text-foreground hover:text-primary hover:bg-muted"
-                }`}
-              >
-                {link.name}
-              </Link>
-            ))}
-          </nav>
-        )}
       </div>
     </header>
 
-    {/* Circular Menu Overlay */}
+    {/* Circular Menu Overlay - Desktop */}
       <CircularMenu 
         isOpen={isCircularMenuOpen} 
         onClose={handleClose}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+      />
+
+      {/* Side Menu - Mobile */}
+      <SideMenu 
+        isOpen={isMenuOpen}
+        onClose={() => setIsMenuOpen(false)}
       />
   </>
   );
